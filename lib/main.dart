@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/screens/home_screen.dart';
+import 'package:flutter_login/screens/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -17,12 +19,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+
+    return MaterialApp(
+      title: 'Flutter Login',
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
+      home: isLoggedIn ? const HomeScreen() : const LoginScreen(),
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/home': (context) => const HomeScreen(),
+      }
     );
   }
 }
